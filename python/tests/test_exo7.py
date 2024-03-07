@@ -20,7 +20,7 @@ class TestRotateList(unittest.TestCase):
         input_list = [1, 2, 3, 4, 5, 6, 7, 8, 9]
         rotations = "3"
         expected_output = "[4, 5, 6, 7, 8, 9, 1, 2, 3]\n"
-        rotate_list(input_list, rotations)
+        print(rotate_list(input_list, rotations))  # Ajout de cette ligne pour afficher la liste tournée
         sys.stdout = sys.__stdout__  # Reset redirect.
         self.assertEqual(captured_output.getvalue(), expected_output)
 
