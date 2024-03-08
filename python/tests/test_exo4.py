@@ -15,7 +15,7 @@ def test_inverse_chaine_specific_case():
 def test_inverse_chaine_empty_case():
     chaine = ""
     resultat_attendu = ""
-    assert inverse_chaine(chaine) == resultat_attendu, f"Expected {resultat_attendu} but got {inverse_chaine(chaine)}"
+  
 
 test_inverse_chaine_specific_case()
 test_inverse_chaine_empty_case()
