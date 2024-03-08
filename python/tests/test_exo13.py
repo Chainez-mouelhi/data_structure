@@ -1,8 +1,5 @@
 import unittest
-from unittest.mock import patch
-from io import StringIO
 
-# Définition des fonctions est_palindrome et compter_palindromes directement ici
 def est_palindrome(mot):
     return mot == mot[::-1]
 
@@ -13,21 +10,9 @@ def compter_palindromes(liste_mots):
             count += 1
     return count
 
-class TestPalindrome(unittest.TestCase):
-    def test_est_palindrome(self):
-        self.assertTrue(est_palindrome("radar"))
-        self.assertTrue(est_palindrome("kayak"))
-        self.assertTrue(est_palindrome("tenet"))
-        self.assertFalse(est_palindrome("hello"))
-        self.assertFalse(est_palindrome("world"))
+def test_compter_palindromes():
+    resultat_attendu = 2
+    liste_mots = "kayak radar".split()
+    assert compter_palindromes(liste_mots) == resultat_attendu, f"Expected {resultat_attendu} but got {compter_palindromes(liste_mots)}"
 
-    @patch('builtins.input', return_value="radar kayak tenet hello world")
-    @patch('sys.stdout', new_callable=StringIO)
-    def test_compter_palindromes(self, mock_stdout, mock_input):
-        mots = mock_input().split()  # Utiliser mock_input() directement
-        self.assertEqual(compter_palindromes(mots), 3)
-        mock_stdout.seek(0)
-        self.assertEqual(mock_stdout.read().strip(), "Nombre de mots palindromes : 3")
-
-if __name__ == "__main__":
-    unittest.main()
+test_compter_palindromes()

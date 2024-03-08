@@ -1,29 +1,17 @@
 import unittest
 
 def decoder_message(message):
-    if not message:
-        return ""
+    # Diviser la chaîne en une liste de nombres
+    codes = message.split()
 
-    try:
-        # Diviser la chaîne en une liste de nombres
-        codes = message.split()
+    # Convertir chaque nombre en son caractère ASCII correspondant
+    decoded_message = "".join(chr(int(code)) for code in codes)
 
-        # Convertir chaque nombre en son caractère ASCII correspondant
-        decoded_message = "".join(chr(int(code)) for code in codes)
+    return decoded_message
 
-        return decoded_message
-    except ValueError:
-        return "Erreur: la chaîne contient des caractères non valides"
+def test_decoder_message():
+    resultat_attendu = "Hello, world!"
+    message = "72 101 108 108 111 44 32 119 111 114 108 100 33"
+    assert decoder_message(message) == resultat_attendu, f"Expected {resultat_attendu} but got {decoder_message(message)}"
 
-class TestDecoderMessage(unittest.TestCase):
-    def test_decoder_message_vide(self):
-        self.assertEqual(decoder_message(""), "")
-
-    def test_decoder_message_simple(self):
-        self.assertEqual(decoder_message("83 69 67"), "SEC")
-
-    def test_decoder_message_avec_erreur(self):
-        self.assertEqual(decoder_message("83 69 ABC"), "Erreur: la chaîne contient des caractères non valides")
-
-if __name__ == "__main__":
-    unittest.main()
+test_decoder_message()

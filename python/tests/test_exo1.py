@@ -1,23 +1,23 @@
 import unittest
 
-class TestLettre(unittest.TestCase):
-
-    def testcountmajuscule(self):
-        self.assertEqual(count_letters("OK"), 2)
-
-    def testcount_minuscule(self):
-        minuscules = count_letters("ok")
-        self.assertEqual(minuscules, 0)
-
-def count_letters(chaine):
+def compter_majuscules_minuscules(chaine):
     majuscules = 0
+    minuscules = 0
 
     for caractere in chaine:
         if caractere.isupper():
             majuscules += 1
+        elif caractere.islower():
+            minuscules += 1
 
-    return majuscules
+    return majuscules, minuscules
 
-if __name__ == '__main__':
-    unittest.main()
+def test_compter_majuscules_minuscules():
+    resultat_attendu_majuscules = 2
+    resultat_attendu_minuscules = 3
+    chaine = "AbCdEf"
+    majuscules, minuscules = compter_majuscules_minuscules(chaine)
+    assert majuscules == resultat_attendu_majuscules, f"Expected {resultat_attendu_majuscules} but got {majuscules}"
+    assert minuscules == resultat_attendu_minuscules, f"Expected {resultat_attendu_minuscules} but got {minuscules}"
 
+test_compter_majuscules_minuscules()
